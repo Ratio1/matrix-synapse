@@ -1,0 +1,39 @@
+# Ratio1 Worker App Runner configuration for Matrix homeserver
+name: matrix-homeserver
+description: Matrix Synapse homeserver for small team (5-6 people)
+
+# Repository settings
+repo: https://github.com/youruser/matrix-on-ratio1
+branch: main
+
+# Build settings
+base_image: ubuntu:22.04
+build_cmd: ""  # Using pre-built Dockerfile.worker
+run_cmd: "./start.sh"
+
+# Resource limits
+resources:
+  cpu: "1"
+  memory: "2GB"
+  storage: "5GB"
+
+# Network configuration
+port: 8008
+health_check:
+  path: "/_matrix/server/versions"
+  interval: "30s"
+
+# Persistent storage
+volumes:
+  - source: "/matrix-data"
+    target: "/data"
+
+# Environment variables
+environment:
+  MATRIX_SERVER_NAME: "matrix.local"
+  SYNAPSE_REPORT_STATS: "no"
+
+# Optional: Cloudflare tunnel for public access
+# cloudflare_tunnel:
+#   subdomain: "your-matrix"
+#   domain: "example.com"

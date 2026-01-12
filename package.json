@@ -1,0 +1,25 @@
+{
+  "name": "matrix-on-ratio1",
+  "version": "1.0.0",
+  "description": "Matrix homeserver running as a Worker App on Ratio1 edge node",
+  "main": "start.sh",
+  "scripts": {
+    "start": "./start.sh",
+    "dev": "./start.sh"
+  },
+  "keywords": [
+    "matrix",
+    "synapse",
+    "ratio1",
+    "homeserver",
+    "chat"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "matrix-synapse": "^1.99.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
