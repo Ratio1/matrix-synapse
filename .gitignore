@@ -24,6 +24,9 @@ wheels/
 venv/
 env/
 ENV/
+test
+test-env*
+test-env-*
 
 # Matrix data directory (should be mounted as volume)
 data/
