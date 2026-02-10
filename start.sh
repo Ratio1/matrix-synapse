@@ -49,7 +49,9 @@ fi
 CURRENT_VERSION="$($VENV_DIR/bin/python -c 'import synapse; print(synapse.__version__)' 2>/dev/null || true)"
 if [ "$CURRENT_VERSION" != "$SYNAPSE_VERSION" ]; then
     echo "Installing Synapse into venv..."
-    "$VENV_DIR/bin/python" -m pip install --upgrade pip
+    # Synapse still imports pkg_resources, which requires setuptools versions
+    # that provide it. Keep setuptools pinned below the removal threshold.
+    "$VENV_DIR/bin/python" -m pip install --upgrade "pip<26" "setuptools<81" wheel "prometheus-client<0.22" "Twisted<24.0.0"
     "$VENV_DIR/bin/python" -m pip install "matrix-synapse==$SYNAPSE_VERSION"
 fi
 

@@ -32,6 +32,8 @@ test-env-*
 data/
 /homeserver.db
 /homeserver.db*
+.local-data/
+.local-data*/
 
 # Logs
 *.log
