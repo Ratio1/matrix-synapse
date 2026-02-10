@@ -9,7 +9,7 @@ branch: main
 # Build settings
 base_image: ubuntu:22.04
 build_cmd: ""  # Using pre-built Dockerfile.worker
-run_cmd: "./start.sh"
+run_cmd: "bash /app/start.sh"
 
 # Resource limits
 resources:
@@ -20,7 +20,7 @@ resources:
 # Network configuration
 port: 8008
 health_check:
-  path: "/_matrix/server/versions"
+  path: "/_matrix/client/versions"
   interval: "30s"
 
 # Persistent storage
@@ -31,6 +31,8 @@ volumes:
 # Environment variables
 environment:
   MATRIX_SERVER_NAME: "matrix.local"
+  MATRIX_PORT: "8008"
+  SYNAPSE_VERSION: "1.115.0"
   SYNAPSE_REPORT_STATS: "no"
 
 # Optional: Cloudflare tunnel for public access

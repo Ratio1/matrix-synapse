@@ -26,6 +26,7 @@ This setup provides a lightweight Matrix homeserver suitable for 5-6 people, run
 - Uses SQLite database (stored in persistent volume)
 - Server name: matrix.local
 - Data directory: /data (mounted persistent volume)
+- Synapse runs from a Python virtualenv at `/data/synapse-venv`
 
 ## Worker App Runner Example
 
@@ -40,6 +41,8 @@ resources:
   cpu: 1
   memory: "2GB"
 port: 8008
+health_check:
+  path: "/_matrix/client/versions"
 volumes:
   - "/data:/data"
 environment: {}
@@ -79,4 +82,3 @@ Check logs for Synapse startup issues. Common problems:
 - Port conflicts
 - Permission issues with data directory
 - Network connectivity issues
-
